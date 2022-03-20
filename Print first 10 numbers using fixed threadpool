@@ -1,0 +1,29 @@
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+public class Task implements Runnable {
+  private int name;
+  public Task (int name){
+         this.name=name;
+  }       
+  
+  public void run() {
+        
+        System.out.println("number:"+name);
+    }
+}
+
+ 
+public class ThreadPoolex
+{
+    public static void main(String[] args) 
+    {
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+         
+        for (int i = 1; i <= 10; i++) 
+        {
+            Task task = new Task( i);
+            executor.execute(task);
+        }
+        executor.shutdown();
+    }
+}
